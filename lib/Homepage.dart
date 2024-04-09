@@ -20,39 +20,39 @@ class Loginpage extends State<Home_Screen> {
         price: 500),
     Product(
         image: 'assets/belt2.jpg',
-        name: 'product1',
+        name: 'product2',
         price: 500),
     Product(
         image: 'assets/belt3.jpg',
-        name: 'product1',
+        name: 'product3',
         price: 500),
     Product(
         image: 'assets/belt4.jpg',
-        name: 'product1',
+        name: 'product4',
         price: 500),
     Product(
         image: 'assets/belt5.jpg',
-        name: 'product1',
+        name: 'product5',
         price: 500),
     Product(
         image: 'assets/belt6.jpg',
-        name: 'product1',
+        name: 'product6',
         price: 500),
     Product(
         image: 'assets/belt7.jpg',
-        name: 'product1',
+        name: 'product7',
         price: 500),
     Product(
         image: 'assets/belt8.jpg',
-        name: 'product1',
+        name: 'product8',
         price: 500),
     Product(
         image: 'assets/belt9.jpg',
-        name: 'product1',
+        name: 'product9',
         price: 500),
     Product(
         image: 'assets/belt10.jpg',
-        name: 'product1',
+        name: 'product10',
         price: 500),
   ];
   @override
@@ -61,10 +61,11 @@ class Loginpage extends State<Home_Screen> {
       theme: ThemeData(
       ),
       home: Scaffold(
-        backgroundColor: Colors.blueAccent,
+        resizeToAvoidBottomInset: true,
+        backgroundColor: Colors.white,
         appBar: AppBar(
           title: const Text("HomeScreen"),
-          backgroundColor: Colors.blueAccent,
+          backgroundColor: Colors.white,
         ),
         body: GridView.count(
           crossAxisCount: 2,
@@ -98,9 +99,9 @@ class ProductCard extends StatelessWidget {
           ClipRRect(
             borderRadius: const BorderRadius.only(topLeft: Radius.circular(8.0), topRight: Radius.circular(8.0)),
             child: Image.asset(
-              product.image, // Use product.imageUrl for the path
+              product.image, // Use product.assert for the path
               fit: BoxFit.cover,
-              height: 150.0, // Set image height
+              height: 130.0, // Set image height
             ),
           ),
           Padding(
