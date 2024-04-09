@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 void main() {
-  runApp( Home_Screen(
-    products: List<String>.generate(10, (i) => "Product List: $i"),
-  ));
+  runApp( const Home_Screen());
 }
 
 class Home_Screen extends StatelessWidget {
-  final List<String> products;
-   Home_Screen({super.key, required this.products});
+
+   const Home_Screen({super.key});
 
   // This widget is the root of your application.
   @override
@@ -19,15 +17,16 @@ class Home_Screen extends StatelessWidget {
       home: Scaffold(
         backgroundColor: Colors.blueAccent,
         appBar: AppBar(
+          title: const Text("HomeScreen"),
           backgroundColor: Colors.blueAccent,
         ),
         body: ListView.builder(
-         itemCount: products.length,
-          itemBuilder: (context,index) {
-           return ListTile(
-             title: Text('${products[index]}'),
-           );
-          },
+         itemCount: 10,
+          itemBuilder: (context, int index) => Card(
+             child: ListTile(
+              title: Text('$index'),
+             ),
+           ),
         ),
       ),
       );
