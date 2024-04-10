@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:my_flutter_app/Product.dart';
+import 'package:my_flutter_app/ProductCard.dart';
+import 'package:my_flutter_app/productdetail.dart';
 
 void main() {
   runApp( const Home_Screen());
@@ -15,46 +17,57 @@ class Home_Screen extends StatefulWidget {
 class Loginpage extends State<Home_Screen> {
   final List<Product> products = [
     Product(
+      index: 1,
         image: 'assets/belt.jpg',
         name: 'product1',
         price: 500),
     Product(
+        index: 2,
         image: 'assets/belt2.jpg',
         name: 'product2',
         price: 500),
     Product(
+        index: 3,
         image: 'assets/belt3.jpg',
         name: 'product3',
         price: 500),
     Product(
+        index: 4,
         image: 'assets/belt4.jpg',
         name: 'product4',
         price: 500),
     Product(
+        index: 5,
         image: 'assets/belt5.jpg',
         name: 'product5',
         price: 500),
     Product(
+        index: 6,
         image: 'assets/belt6.jpg',
         name: 'product6',
         price: 500),
     Product(
+        index: 7,
         image: 'assets/belt7.jpg',
         name: 'product7',
         price: 500),
     Product(
+        index: 8,
         image: 'assets/belt8.jpg',
         name: 'product8',
         price: 500),
     Product(
+        index: 9,
         image: 'assets/belt9.jpg',
         name: 'product9',
         price: 500),
     Product(
+        index: 10,
         image: 'assets/belt10.jpg',
         name: 'product10',
         price: 500),
   ];
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -67,65 +80,20 @@ class Loginpage extends State<Home_Screen> {
           title: const Text("HomeScreen"),
           backgroundColor: Colors.white,
         ),
-        body: GridView.count(
-          crossAxisCount: 2,
-          // Set the number of columns in the grid
-          padding: const EdgeInsets.all(8.0),
-          mainAxisSpacing: 8.0,
-          // Spacing between rows
-          crossAxisSpacing: 8.0,
-          // Spacing between columns
-          children: products.map((product) => ProductCard(product: product))
-              .toList(),
-        ),
-      ),
-    );
+        body: GridView.builder(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+          ),
+            itemCount: products.length,
+            itemBuilder: (context,index){
+              return ProductCard(
+                  products: products, index: index);
+            }),
+          ),
+        );
   }
 }
 
-class ProductCard extends StatelessWidget {
- final Product product;
-   const ProductCard({required this.product});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8.0),
-        boxShadow: [BoxShadow(color: Colors.grey.withOpacity(0.2), blurRadius: 4.0)],
-      ),
-      child: Column(
-        children: [
-          ClipRRect(
-            borderRadius: const BorderRadius.only(topLeft: Radius.circular(8.0), topRight: Radius.circular(8.0)),
-            child: Image.asset(
-              product.image, // Use product.assert for the path
-              fit: BoxFit.cover,
-              height: 130.0, // Set image height
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  product.name,
-                  style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(height: 4.0),
-                Text(
-                  '\$${product.price.toStringAsFixed(2)}', // Format price with two decimal places
-                  style: const TextStyle(color: Colors.grey),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
 
 
 
