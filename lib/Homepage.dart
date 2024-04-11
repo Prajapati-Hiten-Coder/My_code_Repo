@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:my_flutter_app/Product.dart';
 import 'package:my_flutter_app/ProductCard.dart';
-import 'package:my_flutter_app/productdetail.dart';
+
 
 void main() {
   runApp( const Home_Screen());
@@ -77,11 +76,60 @@ class Loginpage extends State<Home_Screen> {
         resizeToAvoidBottomInset: true,
         backgroundColor: Colors.white,
         appBar: AppBar(
-          title: const Text("HomeScreen"),
-          backgroundColor: Colors.white,
+         title: const Text("HomeScreen"),
+          leading: Builder(
+            builder: (context) =>
+            IconButton(
+                icon: const Icon(
+                  Icons.menu,
+                ),
+                onPressed: ()=> Scaffold.of(context).openDrawer(),
+            ),
+
+        ),
+        ),
+        drawer: Drawer(
+          child: Container(
+            padding: const EdgeInsets.only(top: 30.0),
+            child: Column(
+              children: [
+                ListTile(
+                  leading: const Icon(
+                    Icons.arrow_back,
+                  ),
+                  title: const Text("Drawer"),
+                  onTap: (){
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>const Home_Screen(),
+                    ));
+                    },
+                ),
+                const Divider(color: Colors.black,),
+                const ListTile(
+                  leading: Icon(
+                      Icons.settings
+                  ),
+                  title: Text("Settings"),
+                ),
+                const Divider(color: Colors.black,),
+                const ListTile(
+                  leading: Icon(
+                      Icons.star
+                  ),
+                  title: Text("Ratings"),
+                ),
+                const Divider(color: Colors.black,),
+                const ListTile(
+                  leading: Icon(
+                      Icons.notifications,
+                  ),
+                  title: Text("Notifications"),
+                ),
+              ],
+            ),
+          ),
         ),
         body: GridView.builder(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
           ),
             itemCount: products.length,

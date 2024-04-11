@@ -32,8 +32,7 @@ class ProductDetailScreen extends StatelessWidget {
             ),
             Row(
               children: [
-                Text(product.price.toString()
-              ),
+                Text(product.price.toString()),
                 ]
             )
 
