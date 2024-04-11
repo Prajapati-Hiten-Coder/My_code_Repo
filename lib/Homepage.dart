@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_flutter_app/Product.dart';
 import 'package:my_flutter_app/ProductCard.dart';
+import 'package:my_flutter_app/Profilepage.dart';
 
 
 void main() {
@@ -77,17 +78,28 @@ class Loginpage extends State<Home_Screen> {
         backgroundColor: Colors.white,
         appBar: AppBar(
          title: const Text("HomeScreen"),
-          leading: Builder(
-            builder: (context) =>
-            IconButton(
+          leading: Row(
+            children:[
+              Builder(
+              builder: (context) =>
+              IconButton(
                 icon: const Icon(
                   Icons.menu,
+                    ),
+                 onPressed: ()=> Scaffold.of(context).openDrawer(),
+               ),
                 ),
-                onPressed: ()=> Scaffold.of(context).openDrawer(),
+              ]
             ),
+          actions: [
+            IconButton(
+                onPressed: (){
+                 Navigator.push(context, MaterialPageRoute(builder:(context)=>profilepage()));
+                },
+                icon: Icon(Icons.account_circle))
+          ],
+          ),
 
-        ),
-        ),
         drawer: Drawer(
           child: Container(
             padding: const EdgeInsets.only(top: 30.0),
@@ -137,8 +149,8 @@ class Loginpage extends State<Home_Screen> {
               return ProductCard(
                   products: products, index: index);
             }),
-          ),
-        );
+        ),
+    );
   }
 }
 
