@@ -10,11 +10,12 @@ void main() {
 
 class Home_Screen extends StatefulWidget {
   const Home_Screen({super.key});
-  // This widget is the root of your application.
+
    @override
    State<Home_Screen> createState() => Loginpage();
 }
 class Loginpage extends State<Home_Screen> {
+
   final List<Product> products = [
     Product(
       index: 1,
@@ -67,6 +68,7 @@ class Loginpage extends State<Home_Screen> {
         name: 'product10',
         price: 500),
   ];
+
 
   @override
   Widget build(BuildContext context) {
