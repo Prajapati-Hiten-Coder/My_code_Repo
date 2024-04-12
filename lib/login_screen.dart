@@ -71,7 +71,7 @@ class _MyHomePageState extends State<loginPage> {
               decoration: InputDecoration(
                 icon: const Icon(Icons.lock),
                 suffixIcon: IconButton(
-                  padding: const EdgeInsetsDirectional.only(end: 20.0,bottom: 20.0),
+                  padding: const EdgeInsetsDirectional.only(end: 20.0,bottom: 20.0,top: 20.0),
                   icon:  _isobscure? const Icon(Icons.visibility_off):const Icon(Icons.visibility),
                   onPressed: (){
                     setState(() {

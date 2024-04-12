@@ -1,4 +1,4 @@
-import 'dart:ffi';
+
 
 import 'package:flutter/material.dart';
 import 'package:my_flutter_app/Product.dart';
@@ -26,7 +26,7 @@ class ProductDetailScreen extends StatelessWidget {
          ),
             Row(
               children: [
-                SizedBox(height: 16.0),
+                const SizedBox(height: 16.0),
                 Text(product.name),
                ]
             ),
@@ -34,10 +34,15 @@ class ProductDetailScreen extends StatelessWidget {
               children: [
                 Text(product.price.toString()),
                 ]
-            )
+            ),
 
           ]
         ),
+      ),
+      bottomNavigationBar: ElevatedButton(
+        onPressed: () {
+        },
+        child: Text('Add to Cart'),
       ),
     );
   }
