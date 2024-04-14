@@ -42,9 +42,9 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
     _isobscure=true;
     stateofbutton=false;
-    errorpass="";
-    erroremail="";
-    erroruser="";
+    errorpass=null;
+    erroremail=null;
+    erroruser=null;
   }
 
   @override
@@ -75,7 +75,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       erroruser='Please write some Username';
                       return erroruser;
                   }
-                  return null;
+                  erroruser = null;
+                  return erroruser;
                 },
                 controller: username,
                 decoration:  InputDecoration(
@@ -103,6 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     erroremail= 'Please enter valid Email id';
                     return erroremail;
                   }
+                  erroremail=null;
                   return null;
                 },
                 controller: email,
@@ -131,6 +133,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     errorpass= 'Password must be 8 characters long';
                     return errorpass;
                   }
+                  errorpass=null;
                   return null;
                 },
                 obscureText:_isobscure,
