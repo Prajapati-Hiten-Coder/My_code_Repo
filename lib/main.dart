@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_flutter_app/login_screen.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 
 void main() {
@@ -50,23 +51,38 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueAccent,
+      backgroundColor: Colors.transparent,
+
       appBar: AppBar(
-        backgroundColor: Colors.blueAccent,
+        backgroundColor: Colors.white,
       ),
-      body: Form(
+      body: Stack( // Use a Stack widget to position the image and content
+          children: <Widget>[
+      // Add the background image as the first child
+      const DecoratedBox(
+        decoration: BoxDecoration(
+            image: DecorationImage(
+            image: AssetImage("assets/backtheme.jpg"),
+            fit: BoxFit.cover, // Adjust the fit as needed (cover, contain, etc.)
+          ),
+         ),
+        ),
+        Form(
         key:formkey,
         autovalidateMode: AutovalidateMode.onUserInteraction,
-        child:SingleChildScrollView(
+        child: SingleChildScrollView(
             child: Column(
-          children:<Widget>[
-            const Text("Sign In",
-              style:TextStyle(
+              children:<Widget>[
+
+              Text("Sign In",
+              style:GoogleFonts.lobster(
+                textStyle:const TextStyle(
                 fontSize:50,
-                color: Colors.black54,
+                color: Colors.black,
               ),
-            ),
-            Container(
+              ),
+              ),
+              Container(
               padding: const EdgeInsets.only(top: 10.0,left: 50.0,right:50.0),
               child:  TextFormField(
                 validator: (value)
@@ -80,9 +96,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 },
                 controller: username,
                 decoration:  InputDecoration(
-                  icon: const Icon(Icons.account_circle_outlined),
-                  border: const OutlineInputBorder(),
+                  icon:  const Icon(Icons.account_circle_outlined),
+                  iconColor: Colors.lightBlueAccent,
                   hintText: "Enter UserName",
+                  fillColor: Colors.lightBlueAccent.shade100,
+                  filled: true,
                   errorText: erroruser,
                   errorBorder: const OutlineInputBorder(
                     borderSide: BorderSide(color:Colors.black54),
@@ -110,8 +128,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 controller: email,
                 decoration: InputDecoration(
                   icon: const Icon(Icons.email),
-                  border: const OutlineInputBorder(),
+                  iconColor: Colors.lightBlueAccent,
                   hintText: "Enter Email",
+                  fillColor: Colors.lightBlueAccent.shade100,
+                  filled: true,
                   errorText: erroremail,
                   errorBorder: const OutlineInputBorder(
                     borderSide: BorderSide(color:Colors.black54),
@@ -140,6 +160,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 controller: password,
                 decoration: InputDecoration(
                   icon: const Icon(Icons.lock),
+                  iconColor: Colors.lightBlueAccent,
+                  fillColor: Colors.lightBlueAccent.shade100,
+                  filled: true,
                   suffixIcon: IconButton(
                     padding: const EdgeInsetsDirectional.only(end: 20.0),
                     icon:  _isobscure? const Icon(Icons.visibility_off):const Icon(Icons.visibility),
@@ -149,7 +172,6 @@ class _MyHomePageState extends State<MyHomePage> {
                       });
                     },
                   ),
-                  border: const OutlineInputBorder(),
                   hintText: "Enter Password",
                   errorText: errorpass,
                   errorBorder: const OutlineInputBorder(
@@ -178,6 +200,8 @@ class _MyHomePageState extends State<MyHomePage> {
          ),
         ),
       ),
+    ]
+    ),
     );
   }
   Widget buildcheckbox() => ListTile(
