@@ -9,7 +9,6 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -37,6 +36,7 @@ class _MyHomePageState extends State<MyHomePage> {
   late String? erroruser;
   bool _isobscure=true;
   bool stateofbutton=false;
+
   @override
   void initState()
   {
@@ -52,156 +52,159 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.transparent,
-
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+       backgroundColor: Color.fromRGBO(0, 85, 255, 0.9),
+        title: const Text("Sign in",
+        style: TextStyle(
+          fontSize: 30,
+          ),
+        ),
       ),
-      body: Stack( // Use a Stack widget to position the image and content
-          children: <Widget>[
-      // Add the background image as the first child
-      const DecoratedBox(
-        decoration: BoxDecoration(
+      body: Container(// Use a
+      alignment: Alignment.center,
+        decoration: const BoxDecoration(
             image: DecorationImage(
             image: AssetImage("assets/backtheme.jpg"),
             fit: BoxFit.cover, // Adjust the fit as needed (cover, contain, etc.)
           ),
          ),
-        ),
-        Form(
-        key:formkey,
-        autovalidateMode: AutovalidateMode.onUserInteraction,
-        child: SingleChildScrollView(
+        child: Form(
+          key:formkey,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          child: SingleChildScrollView(
             child: Column(
               children:<Widget>[
-
-              Text("Sign In",
-              style:GoogleFonts.lobster(
-                textStyle:const TextStyle(
-                fontSize:50,
-                color: Colors.black,
-              ),
-              ),
-              ),
-              Container(
-              padding: const EdgeInsets.only(top: 10.0,left: 50.0,right:50.0),
-              child:  TextFormField(
-                validator: (value)
-                {
-                  if(value!.isEmpty){
-                      erroruser='Please write some Username';
+                Text("Sign In",
+                  style:GoogleFonts.lobster(
+                    textStyle:const TextStyle(
+                      fontSize:50,
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.only(top:10.0,left: 50.0,right:50.0),
+                  child:  TextFormField(
+                    validator: (value)
+                    {
+                      if(value!.isEmpty){
+                        erroruser='Please write some Username';
+                        return erroruser;
+                      }
+                      erroruser = null;
                       return erroruser;
-                  }
-                  erroruser = null;
-                  return erroruser;
-                },
-                controller: username,
-                decoration:  InputDecoration(
-                  icon:  const Icon(Icons.account_circle_outlined),
-                  iconColor: Colors.lightBlueAccent,
-                  hintText: "Enter UserName",
-                  fillColor: Colors.lightBlueAccent.shade100,
-                  filled: true,
-                  errorText: erroruser,
-                  errorBorder: const OutlineInputBorder(
-                    borderSide: BorderSide(color:Colors.black54),
-                  ),
-                ),
-
-              ),
-            ),
-            Container(
-              padding: const EdgeInsets.only(left: 50.0,right: 50.0,top: 20.0),
-              child: TextFormField(
-                validator: (value)
-                {
-                  if(value!.isEmpty){
-                    erroremail= 'Please enter email id';
-                    return erroremail;
-                  }
-                  else if(!isEmailValid(value)){
-                    erroremail= 'Please enter valid Email id';
-                    return erroremail;
-                  }
-                  erroremail=null;
-                  return null;
-                },
-                controller: email,
-                decoration: InputDecoration(
-                  icon: const Icon(Icons.email),
-                  iconColor: Colors.lightBlueAccent,
-                  hintText: "Enter Email",
-                  fillColor: Colors.lightBlueAccent.shade100,
-                  filled: true,
-                  errorText: erroremail,
-                  errorBorder: const OutlineInputBorder(
-                    borderSide: BorderSide(color:Colors.black54),
-                  ),
-                ),
-
-              ),
-            ),
-            Container(
-              padding: const EdgeInsets.only(top: 20.0,left: 50.0,right: 50.0),
-              child: TextFormField(
-                validator: (value)
-                {
-                  if(value!.isEmpty){
-                    errorpass='Please Enter password';
-                    return errorpass;
-                  }
-                  else if(value.length<8){
-                    errorpass= 'Password must be 8 characters long';
-                    return errorpass;
-                  }
-                  errorpass=null;
-                  return null;
-                },
-                obscureText:_isobscure,
-                controller: password,
-                decoration: InputDecoration(
-                  icon: const Icon(Icons.lock),
-                  iconColor: Colors.lightBlueAccent,
-                  fillColor: Colors.lightBlueAccent.shade100,
-                  filled: true,
-                  suffixIcon: IconButton(
-                    padding: const EdgeInsetsDirectional.only(end: 20.0),
-                    icon:  _isobscure? const Icon(Icons.visibility_off):const Icon(Icons.visibility),
-                    onPressed: (){
-                      setState(() {
-                        _isobscure=!_isobscure;
-                      });
                     },
-                  ),
-                  hintText: "Enter Password",
-                  errorText: errorpass,
-                  errorBorder: const OutlineInputBorder(
-                    borderSide: BorderSide(color:Colors.black54),
+                    controller: username,
+                    decoration:  InputDecoration(
+                      icon:  const Icon(Icons.account_circle_outlined),
+                      iconColor: Colors.lightBlueAccent,
+                      hintText: "Enter UserName",
+                      fillColor: Colors.lightBlueAccent.shade100,
+                      filled: true,
+                      errorText: erroruser,
+                      errorBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(color:Colors.black54),
+                      ),
+                    ),
+
                   ),
                 ),
+                Container(
+                  padding: const EdgeInsets.only(left: 50.0,right: 50.0,top: 20.0),
+                  child: TextFormField(
+                    validator: (value)
+                    {
+                      if(value!.isEmpty){
+                        erroremail= 'Please enter email id';
+                        return erroremail;
+                      }
+                      else if(!isEmailValid(value)){
+                        erroremail= 'Please enter valid Email id';
+                        return erroremail;
+                      }
+                      erroremail=null;
+                      return null;
+                    },
+                    controller: email,
+                    decoration: InputDecoration(
+                      icon: const Icon(Icons.email),
+                      iconColor: Colors.lightBlueAccent,
+                      hintText: "Enter Email",
+                      fillColor: Colors.lightBlueAccent.shade100,
+                      filled: true,
+                      errorText: erroremail,
+                      errorBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(color:Colors.black54),
+                      ),
+                    ),
 
-              ),
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.only(top: 20.0,left: 50.0,right: 50.0),
+                  child: TextFormField(
+                    validator: (value)
+                    {
+                      if(value!.isEmpty){
+                        errorpass='Please Enter password';
+                        return errorpass;
+                      }
+                      else if(value.length<8){
+                        errorpass= 'Password must be 8 characters long';
+                        return errorpass;
+                      }
+                      errorpass=null;
+                      return null;
+                    },
+                    obscureText:_isobscure,
+                    controller: password,
+                    decoration: InputDecoration(
+                      icon: const Icon(Icons.lock),
+                      iconColor: Colors.lightBlueAccent,
+                      fillColor: Colors.lightBlueAccent.shade100,
+                      filled: true,
+                      suffixIcon: IconButton(
+                        padding: const EdgeInsetsDirectional.only(end: 20.0),
+                        icon:  _isobscure? const Icon(Icons.visibility_off):const Icon(Icons.visibility),
+                        onPressed: (){
+                          setState(() {
+                            _isobscure=!_isobscure;
+                          });
+                        },
+                      ),
+                      hintText: "Enter Password",
+                      errorText: errorpass,
+                      errorBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(color:Colors.black54),
+                      ),
+                    ),
+
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsetsDirectional.only(start: 20.0),
+                  child: buildcheckbox(),
+                ),
+                FilledButton(
+                    onPressed: stateofbutton? ()
+                    {
+                      setState(() {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => (const loginPage())));
+                      });
+                    }:null,
+                    child: const Text("Sign In")
+                ),
+                const Padding(
+                    padding: EdgeInsets.only(top: 60.0))
+              ],
             ),
-           Container(
-             padding: const EdgeInsetsDirectional.only(start: 20.0),
-             child: buildcheckbox(),
-           ),
-            FilledButton(
-                onPressed: stateofbutton? ()
-                {
-                  setState(() {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => (const loginPage())));
-                  });
-                }:null,
-                child: const Text("Sign In")
-              ),
-            ],
-         ),
+          ),
         ),
-      ),
-    ]
-    ),
+        ),
+
     );
   }
   Widget buildcheckbox() => ListTile(
@@ -214,6 +217,7 @@ class _MyHomePageState extends State<MyHomePage> {
         }
     ),
     title: const Text("I agree to terms and condition"),
+    textColor: Colors.purple,
   );
 }
 bool isEmailValid(String email) {
