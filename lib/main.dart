@@ -35,7 +35,7 @@ class _MyHomePageState extends State<MyHomePage> {
   late String? errorpass;
   late String? erroruser;
   bool _isobscure=true;
-  bool stateofbutton=false;
+ bool stateofbutton=false;
 
   @override
   void initState()
@@ -53,15 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       backgroundColor: Colors.transparent,
       extendBodyBehindAppBar: true,
-      appBar: AppBar(
-       backgroundColor: Color.fromRGBO(0, 85, 255, 0.9),
-        title: const Text("Sign in",
-        style: TextStyle(
-          fontSize: 30,
-          ),
-        ),
-      ),
-      body: Container(// Use a
+      body: Container(
       alignment: Alignment.center,
         decoration: const BoxDecoration(
             image: DecorationImage(
@@ -76,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Column(
               children:<Widget>[
                 Text("Sign In",
-                  style:GoogleFonts.lobster(
+                  style:GoogleFonts.adamina(
                     textStyle:const TextStyle(
                       fontSize:50,
                       color: Colors.black,
@@ -186,7 +178,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   padding: const EdgeInsetsDirectional.only(start: 20.0),
                   child: buildcheckbox(),
                 ),
-                FilledButton(
+                 ElevatedButton(
+                    style: const ButtonStyle(
+                      foregroundColor: MaterialStatePropertyAll<Color>(Colors.blue),
+                      backgroundColor: MaterialStatePropertyAll<Color>(Colors.black),
+                    ),
                     onPressed: stateofbutton? ()
                     {
                       setState(() {
@@ -195,10 +191,11 @@ class _MyHomePageState extends State<MyHomePage> {
                             MaterialPageRoute(builder: (context) => (const loginPage())));
                       });
                     }:null,
-                    child: const Text("Sign In")
+                    child: const Text("Sign In",),
                 ),
                 const Padding(
-                    padding: EdgeInsets.only(top: 60.0))
+                    padding: EdgeInsets.only(top: 60.0)),
+
               ],
             ),
           ),
@@ -209,6 +206,8 @@ class _MyHomePageState extends State<MyHomePage> {
   }
   Widget buildcheckbox() => ListTile(
     leading: Checkbox(
+      checkColor: Colors.black,
+        activeColor: Colors.white,
         value: stateofbutton,
         onChanged: (value) {
           setState(() {
@@ -217,7 +216,7 @@ class _MyHomePageState extends State<MyHomePage> {
         }
     ),
     title: const Text("I agree to terms and condition"),
-    textColor: Colors.purple,
+    textColor: Colors.black,
   );
 }
 bool isEmailValid(String email) {
