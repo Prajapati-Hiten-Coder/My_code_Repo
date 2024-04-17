@@ -1,5 +1,5 @@
 // ignore_for_file: camel_case_types
-
+import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:my_flutter_app/Homepage.dart';
@@ -44,10 +44,16 @@ class _MyHomePageState extends State<loginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blueAccent,
-      appBar: AppBar(
-        backgroundColor: Colors.blueAccent,
-      ),
-      body: Form(
+      extendBodyBehindAppBar: true,
+      body: Container(
+        alignment: Alignment.center,
+          decoration: const BoxDecoration(
+        image: DecorationImage(
+        image: AssetImage("assets/backtheme.jpg"),
+          fit: BoxFit.cover, // Adjust the fit as needed (cover, contain, etc.)
+        ),
+        ),
+       child:Form(
         key: formkey,
         autovalidateMode: AutovalidateMode.onUserInteraction,
         child: SingleChildScrollView(
@@ -55,15 +61,17 @@ class _MyHomePageState extends State<loginPage> {
               children:<Widget> [
           Container(
             padding: const EdgeInsetsDirectional.only(top: 80.0),
-            child: const Text("Login In",
-              style:TextStyle(
-                fontSize:50,
-                color: Colors.black54,
-              ),
+            child: Text("Login In",
+              style:GoogleFonts.adamina(
+                textStyle:const TextStyle(
+                  fontSize:50,
+                  color: Colors.black,
+                ),
             ),
           ),
+          ),
           Container(
-            padding: const EdgeInsets.only(top: 50.0,left: 35.0,right: 50.0,bottom: 20.0),
+            padding: const EdgeInsets.only(top: 10.0,left: 35.0,right: 50.0,bottom: 20.0),
             child: TextFormField(
               validator: (value)
               {
@@ -80,9 +88,11 @@ class _MyHomePageState extends State<loginPage> {
               },
               decoration: InputDecoration(
                 icon: const Icon(Icons.account_circle_outlined),
-                border: const OutlineInputBorder(),
+                iconColor: Colors.lightBlueAccent,
                 hintText: "Enter UserName",
                 errorText: erroremail,
+                fillColor: Colors.lightBlueAccent.shade100,
+                filled: true,
                 errorBorder: const OutlineInputBorder(
                   borderSide: BorderSide(color:Colors.black54),
               ),
@@ -90,7 +100,7 @@ class _MyHomePageState extends State<loginPage> {
           ),
           ),
             Container(
-            padding: const EdgeInsets.only(top: 10.0,left: 35.0,right: 50.0),
+            padding: const EdgeInsets.only(left: 35.0,right: 50.0),
             child: TextFormField(
               validator: (value)
               {
@@ -107,9 +117,12 @@ class _MyHomePageState extends State<loginPage> {
               },
               obscureText:_isobscure,
               decoration: InputDecoration(
+                fillColor: Colors.lightBlueAccent.shade100,
+                filled: true,
                 icon: const Icon(Icons.lock),
+                iconColor: Colors.lightBlueAccent,
                 suffixIcon: IconButton(
-                  padding: const EdgeInsetsDirectional.only(end: 20.0,bottom: 20.0,top: 20.0),
+                  padding: const EdgeInsetsDirectional.only(end: 20.0),
                   icon:  _isobscure? const Icon(Icons.visibility_off):const Icon(Icons.visibility),
                   onPressed: (){
                     setState(() {
@@ -117,7 +130,6 @@ class _MyHomePageState extends State<loginPage> {
                     });
                   },
                 ),
-                border: const OutlineInputBorder(),
                 hintText: "Enter Password",
                 errorText: errorpass,
                 errorBorder: const OutlineInputBorder(
@@ -128,7 +140,11 @@ class _MyHomePageState extends State<loginPage> {
             ),
           Container(
             padding: const EdgeInsetsDirectional.only(top: 20.0),
-            child: FilledButton(
+            child: ElevatedButton(
+                style: const ButtonStyle(
+                  foregroundColor: MaterialStatePropertyAll<Color>(Colors.blue),
+                  backgroundColor: MaterialStatePropertyAll<Color>(Colors.black),
+                ),
                 onPressed: ()
                 {
                   Navigator.push(
@@ -138,9 +154,12 @@ class _MyHomePageState extends State<loginPage> {
                 child: const Text("Login In")
                 ),
               ),
+                const Padding(
+                    padding: EdgeInsets.only(bottom: 130.0)),
             ],
           ),
         ),
+      ),
       ),
     );
   }
