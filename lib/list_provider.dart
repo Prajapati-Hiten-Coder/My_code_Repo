@@ -72,19 +72,12 @@ final List<Product> product=[
     final productToCheck = product[index];
     return favlist_product.contains(productToCheck);// Check if product exists in favorites
   }
-   addproduct(int index)
-  {
-    favlist_product.add(product[index].index as Product);
-    favlist_product.add(product[index].price as Product);
-    favlist_product.add(product[index].image as Product);
-    favlist_product.add(product[index].name as Product);
+  void addproduct(int index) {
+    favlist_product.add(product[index]);
   }
-  removeproduct(int index)
-  {
-    favlist_product.remove(product[index].index as Product);
-    favlist_product.remove(product[index].price as Product);
-    favlist_product.remove(product[index].image as Product);
-    favlist_product.remove(product[index].name as Product);
+
+  void removeproduct(int index) {
+    favlist_product.remove(product[index]);
   }
 
 

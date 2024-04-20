@@ -95,7 +95,9 @@ class favorite_state extends State<favorite_page>
                     padding: const EdgeInsets.only(left: 150.0),
                   child: IconButton(
                       icon: const Icon(Icons.delete),
-                      onPressed: (){}
+                      onPressed: (){
+                        listmodel.removeproduct(index);
+                      }
                       ),
                   ),
                       ],

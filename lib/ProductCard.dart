@@ -43,14 +43,16 @@ class ProductCard extends StatelessWidget {
               children: [
                 Align(
                   alignment: Alignment.topRight,
-                 child:IconButton(
-                  onPressed: () {
-                    listmodel.isfav(index); // Toggle favorite state
-                    isFavorite = !isFavorite; // Update local variable
+                 child:Consumer<list_provider>(
+                     builder: (context, listmodel, child)=>IconButton(
+                      onPressed: () {
+                      listmodel.isfav(index); // Toggle favorite state
+                      isFavorite = !isFavorite; // Update local variable
                   },
                   icon: isFavorite
-                      ? const Icon(Icons.favorite, color: Colors.red)
-                      : const Icon(Icons.favorite_border_outlined),
+                      ?  const Icon(Icons.favorite,color: Colors.red)
+                      :  const Icon(Icons.favorite_border_outlined),
+                ),
                 ),
                 ),
                 ClipRRect(
