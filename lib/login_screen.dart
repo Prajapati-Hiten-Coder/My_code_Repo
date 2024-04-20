@@ -30,12 +30,12 @@ class loginPage extends StatefulWidget {
 
 class _MyHomePageState extends State<loginPage> {
   final formkey=GlobalKey<FormState>();
-   bool _isobscure=true;
+   bool obscure=true;
    String? errorpass;
    String? erroremail;
 
   void initstate() {
-      _isobscure=true;
+      obscure=true;
       errorpass=null;
       erroremail=null;
   }
@@ -115,7 +115,7 @@ class _MyHomePageState extends State<loginPage> {
                 errorpass=null;
                 return null;
               },
-              obscureText:_isobscure,
+              obscureText:obscure,
               decoration: InputDecoration(
                 fillColor: Colors.lightBlueAccent.shade100,
                 filled: true,
@@ -123,10 +123,10 @@ class _MyHomePageState extends State<loginPage> {
                 iconColor: Colors.lightBlueAccent,
                 suffixIcon: IconButton(
                   padding: const EdgeInsetsDirectional.only(end: 20.0),
-                  icon:  _isobscure? const Icon(Icons.visibility_off):const Icon(Icons.visibility),
+                  icon:  obscure? const Icon(Icons.visibility_off):const Icon(Icons.visibility),
                   onPressed: (){
                     setState(() {
-                      _isobscure=!_isobscure;
+                      obscure=!obscure;
                     });
                   },
                 ),
@@ -168,7 +168,7 @@ class showtoast extends loginPage {
   showtoast({super.key})
   {
     Fluttertoast.showToast(
-        msg: "Login Succesfull",
+        msg: "Login Successful",
         toastLength: Toast.LENGTH_LONG,
         timeInSecForIosWeb: 5,
         gravity: ToastGravity.BOTTOM,

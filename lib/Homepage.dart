@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:my_flutter_app/Product.dart';
-import 'package:my_flutter_app/ProductCard.dart';
-import 'package:my_flutter_app/Profilepage.dart';
+  import 'package:my_flutter_app/ProductCard.dart';
+import 'package:my_flutter_app/favorite.dart';
+import 'package:my_flutter_app/list_provider.dart';
+import 'package:provider/provider.dart';
 
 
 void main() {
@@ -16,63 +17,15 @@ class Home_Screen extends StatefulWidget {
 }
 class Loginpage extends State<Home_Screen> {
 
-  final List<Product> products = [
-    Product(
-      index: 1,
-        image: 'assets/belt.jpg',
-        name: 'product1',
-        price: 500),
-    Product(
-        index: 2,
-        image: 'assets/belt2.jpg',
-        name: 'product2',
-        price: 500),
-    Product(
-        index: 3,
-        image: 'assets/belt3.jpg',
-        name: 'product3',
-        price: 500),
-    Product(
-        index: 4,
-        image: 'assets/belt4.jpg',
-        name: 'product4',
-        price: 500),
-    Product(
-        index: 5,
-        image: 'assets/belt5.jpg',
-        name: 'product5',
-        price: 500),
-    Product(
-        index: 6,
-        image: 'assets/belt6.jpg',
-        name: 'product6',
-        price: 500),
-    Product(
-        index: 7,
-        image: 'assets/belt7.jpg',
-        name: 'product7',
-        price: 500),
-    Product(
-        index: 8,
-        image: 'assets/belt8.jpg',
-        name: 'product8',
-        price: 500),
-    Product(
-        index: 9,
-        image: 'assets/belt9.jpg',
-        name: 'product9',
-        price: 500),
-    Product(
-        index: 10,
-        image: 'assets/belt10.jpg',
-        name: 'product10',
-        price: 500),
-  ];
 
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (context)=>list_provider()),
+        ],
+      child:MaterialApp(
       theme: ThemeData(
       ),
       home: Scaffold(
@@ -96,9 +49,9 @@ class Loginpage extends State<Home_Screen> {
           actions: [
             IconButton(
                 onPressed: (){
-                 Navigator.push(context, MaterialPageRoute(builder:(context)=>profilepage()));
+                 Navigator.push(context, MaterialPageRoute(builder:(context)=>const favorite_Screen()));
                 },
-                icon: Icon(Icons.account_circle))
+                icon: const Icon(Icons.favorite))
           ],
           ),
 
@@ -142,15 +95,18 @@ class Loginpage extends State<Home_Screen> {
             ),
           ),
         ),
-        body: GridView.builder(
+        body: Consumer<list_provider>(
+            builder: (BuildContext context, list_provider listmodel, Widget? child) =>GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
           ),
-            itemCount: products.length,
+            itemCount: listmodel.product.length,
             itemBuilder: (context,index){
-              return ProductCard(
-                  products: products, index: index);
+              return ProductCard(index: index);
+
             }),
+        ),
+      ),
         ),
     );
   }
