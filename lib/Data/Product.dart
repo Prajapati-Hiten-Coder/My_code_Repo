@@ -5,6 +5,6 @@ class Product {
   late String name;
   late int price;
   late int index;
-
-  Product({required this.image, required this.name, required this.price,required this.index});
+  bool isfavorite;
+  Product({required this.image, required this.name, required this.price,required this.index,this.isfavorite=false});
 }

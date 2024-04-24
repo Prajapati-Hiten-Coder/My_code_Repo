@@ -1,4 +1,4 @@
-// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: non_constant_identifier_names, file_names
 import 'package:flutter/material.dart';
 import 'package:my_flutter_app/Data/productdetail.dart';
 import 'package:my_flutter_app/list_provider.dart';
@@ -12,19 +12,16 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<list_provider>(
-      builder: (context, listmodel, child) {
-        bool isFavorite = listmodel.isexist(index); // Get favorite state
-
+      final favortieProvider=Provider.of<ListProvider>(context);
+      final product= favortieProvider.products;
         return Scaffold(
-
           body: GestureDetector(
           onTap: () {
             Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => ProductDetailScreen(
-                  product: listmodel.product[index],
+                  product: favortieProvider.products[index],
                 ),
               ),
             );
@@ -43,25 +40,27 @@ class ProductCard extends StatelessWidget {
               children: [
                 Align(
                   alignment: Alignment.topRight,
-                 child:Consumer<list_provider>(
-                     builder: (context, listmodel, child)=>IconButton(
+                 child:IconButton(
                       onPressed: () {
-                      listmodel.isfav(index); // Toggle favorite state
-                      isFavorite = !isFavorite; // Update local variable
+                        if(product[index].isfavorite) {
+                          favortieProvider.removerfromfavorites(product[index].name);
+                        }
+                        else {
+                          favortieProvider.addtofavorites(product[index].name);
+                        }
                   },
-                  icon: isFavorite
-                      ?  const Icon(Icons.favorite,color: Colors.red)
-                      :  const Icon(Icons.favorite_border_outlined),
+                  icon:Icon(product[index].isfavorite?
+                      Icons.favorite:
+                      Icons.favorite_border),
                 ),
                 ),
-                ),
-                ClipRRect(
+                 ClipRRect(
                   borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(8.0),
                     topRight: Radius.circular(8.0),
                   ),
                   child: Image.asset(
-                    listmodel.product[index].image,
+                    favortieProvider.products[index].image,
                     fit: BoxFit.cover,
                     height: 85.0,
                     width: 180.0,
@@ -76,27 +75,24 @@ class ProductCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        listmodel.product[index].name,
+                        favortieProvider.products[index].name,
                         style: const TextStyle(
                           fontSize: 16.0,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      const SizedBox(height: 4.0),
+                       const SizedBox(height: 4.0),
                       Text(
-                        listmodel.product[index].price.toString(),
+                        favortieProvider.products[index].price.toString(),
                         style: const TextStyle(color: Colors.grey),
                       ),
                     ],
                   ),
                 ),
-
-              ],
+            ]
             ),
           ),
           ),
         );
-      },
-    );
   }
 }

@@ -23,7 +23,7 @@ class Loginpage extends State<Home_Screen> {
   Widget build(BuildContext context) {
     return MultiProvider(
         providers: [
-          ChangeNotifierProvider(create: (context)=>list_provider()),
+          ChangeNotifierProvider(create: (context)=>ListProvider()),
         ],
       child:MaterialApp(
       theme: ThemeData(
@@ -95,12 +95,12 @@ class Loginpage extends State<Home_Screen> {
             ),
           ),
         ),
-        body: Consumer<list_provider>(
-            builder: (BuildContext context, list_provider listmodel, Widget? child) =>GridView.builder(
+        body: Consumer<ListProvider>(
+            builder: (BuildContext context, ListProvider listmodel, Widget? child) =>GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
           ),
-            itemCount: listmodel.product.length,
+            itemCount: listmodel.products.length,
             itemBuilder: (context,index){
               return ProductCard(index: index);
 
