@@ -2,7 +2,7 @@
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:my_flutter_app/Homepage.dart';
+import 'package:my_flutter_app/pages/homepage.dart';
 void main() {
   runApp(const Login_Screen());
 }
@@ -149,7 +149,8 @@ class _MyHomePageState extends State<loginPage> {
                 {
                   Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => (const Home_Screen())));
+                      MaterialPageRoute(builder: (context) => (const home_Screen())));
+
                 },
                 child: const Text("Login In")
                 ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_flutter_app/login_screen.dart';
+import 'package:my_flutter_app/pages/login_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 
@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
       ),
       home:const MyHomePage(),

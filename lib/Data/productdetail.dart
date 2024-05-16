@@ -1,12 +1,12 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:my_flutter_app/Data/Product.dart';
+import 'package:my_flutter_app/Data/product_model.dart';
 
 class ProductDetailScreen extends StatelessWidget {
   final Product product;
 
-   ProductDetailScreen({required this.product});
+   const ProductDetailScreen({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -35,14 +35,13 @@ class ProductDetailScreen extends StatelessWidget {
                 Text(product.price.toString()),
                 ]
             ),
-
           ]
         ),
       ),
       bottomNavigationBar: ElevatedButton(
         onPressed: () {
         },
-        child: Text('Add to Cart'),
+        child: const Text('Add to Cart'),
       ),
     );
   }
