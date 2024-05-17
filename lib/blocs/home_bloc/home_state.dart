@@ -27,3 +27,7 @@ class HomeToFavoriteState extends HomeActionState{
 class HomeToProductDetailState extends HomeActionState{
 
 }
+class HomeProductFavoritedActionState extends HomeActionState
+{
+
+}

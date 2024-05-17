@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_flutter_app/Data/productdetail.dart';
 import 'package:my_flutter_app/blocs/home_bloc/home_bloc.dart';
 import 'package:my_flutter_app/pages/favoritepage.dart';
 import 'package:my_flutter_app/widget/productcard.dart';
@@ -42,7 +41,10 @@ class homepage extends State<home_Screen> {
             {
               Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const Favorite()));
             }
-
+        else if(state is HomeProductFavoritedActionState)
+          {
+            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('added to favroite')));
+          }
         },
         builder: (context, state) {
           switch (state.runtimeType) {
@@ -78,8 +80,9 @@ class homepage extends State<home_Screen> {
                 ),
                 body: GridView.builder(
                     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+                    itemCount: successstate.productlist.length,
                     itemBuilder: (context,index){
-                      return ProductCard(product: successstate.productlist[index]);
+                      return ProductCard(product: successstate.productlist[index],homeBloc: homeBloc,);
                     })
               );
 

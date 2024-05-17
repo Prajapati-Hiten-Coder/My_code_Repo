@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:meta/meta.dart';
+import 'package:my_flutter_app/Data/favorite_product.dart';
 import 'package:my_flutter_app/Data/product_data.dart';
 import 'package:my_flutter_app/Data/product_model.dart';
 
@@ -18,6 +19,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<HomeLoadSuccessEvent>(homeLoadSuccessEvent);
     on<Home_Navigateto_Fav_Event>(home_Navigateto_Fav_Event);
     on<Home_To_Productdetail_Event>(home_To_Productdetail_Event);
+    on<FavroiteButtonClickEvent>(favroiteButtonClickEvent);
 
   }
   FutureOr<void> homeInitialEvent(HomeInitialEvent event, Emitter<HomeState> emit) async {
@@ -55,6 +57,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   FutureOr<void> home_To_Productdetail_Event(Home_To_Productdetail_Event event, Emitter<HomeState> emit) {
     emit(HomeToProductDetailState());
+  }
+
+  FutureOr<void> favroiteButtonClickEvent(FavroiteButtonClickEvent event, Emitter<HomeState> emit) {
+      print('favorite clicked');
+      favoritelist.add(event.product);
+      emit(HomeProductFavoritedActionState());
   }
 }
 

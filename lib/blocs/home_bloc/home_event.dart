@@ -17,7 +17,9 @@ class HomeLoadSuccessEvent extends HomeEvent
 }
 class FavroiteButtonClickEvent extends HomeEvent
 {
+  final Product product;
 
+  FavroiteButtonClickEvent({required this.product});
 }
 class Home_Navigateto_Fav_Event extends HomeEvent
 {
